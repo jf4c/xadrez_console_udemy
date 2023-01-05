@@ -9,9 +9,9 @@ namespace BoardLayer
         public int AmOfMovement { get; set; }
         public Board Board { get; set; }
 
-        public Piece(Position position, Board board, Color color)
+        public Piece(Board board, Color color)
         {
-            Position = position;
+            Position = null;
             Board = board;
             Color = color;
             AmOfMovement = 0;

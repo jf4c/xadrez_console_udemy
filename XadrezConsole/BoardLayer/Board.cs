@@ -18,9 +18,16 @@ namespace BoardLayer
             _pieces = new Piece[line, column];
         }
 
-        public Piece piece(int line, int column)
+        public Piece Piece(int line, int column)
         {
             return _pieces[line, column];
         }
+
+        public void PutPiece(Piece p, Position pos)
+        {
+            _pieces[pos.Line, pos.Column] = p;
+            p.Position = pos;
+        }
+
     }
 }
