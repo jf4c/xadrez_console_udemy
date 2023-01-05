@@ -16,5 +16,7 @@ namespace BoardLayer
             Color = color;
             AmOfMovement = 0;
         }
+
+        
     }
 }

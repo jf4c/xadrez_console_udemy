@@ -17,5 +17,10 @@ namespace BoardLayer
             Column = column;
             _pieces = new Piece[line, column];
         }
+
+        public Piece piece(int line, int column)
+        {
+            return _pieces[line, column];
+        }
     }
 }
