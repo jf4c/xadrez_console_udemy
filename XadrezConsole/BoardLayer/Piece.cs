@@ -17,6 +17,9 @@ namespace BoardLayer
             AmOfMovement = 0;
         }
 
-        
+        public void addMovement()
+        {
+            AmOfMovement++;
+        }
     }
 }

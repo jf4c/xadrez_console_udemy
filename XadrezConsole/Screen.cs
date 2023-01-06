@@ -1,6 +1,7 @@
 ﻿
 using BoardLayer;
 using BoardLayer.Enum;
+using GameLayer;
 
 namespace XadrezConsole
 {
@@ -28,6 +29,16 @@ namespace XadrezConsole
             }
             Console.WriteLine("  a  b  c  d  e  f  g  h");
         }
+
+
+        public static PositionChess ReadPositionChess()
+        {
+            string s = Console.ReadLine();
+            char colunm = s[0];
+            int line = int.Parse(s[1] + "");
+            return new PositionChess(colunm, line);
+        }
+
 
         public static void PrintPiece(Piece piece)
         {

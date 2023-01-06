@@ -43,6 +43,20 @@ namespace BoardLayer
             p.Position = pos;
         }
 
+        public Piece RemovePiece(Position pos)
+        {
+            if (Piece(pos) == null)
+            {
+                return null;
+            }
+            Piece aux = Piece(pos);
+            aux.Position = null;
+            _pieces[pos.Line, pos.Column] = null;
+            return aux;
+
+
+        }
+
         public bool ValidPosition(Position pos)
         {
             if (pos.Line < 0 || pos.Line >= Line || pos.Column < 0 || pos.Column >= Column)
