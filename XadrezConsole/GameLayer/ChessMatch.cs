@@ -6,15 +6,15 @@ namespace GameLayer
     internal class ChessMatch
     {
         public Board Board { get; private set; }
-        private int _turn;
-        private Color _currentPlayer;
+        public int Turn { get; private set; }
+        public Color CurrentPlayer { get; private set; }
         public bool Finishing { get; private set; }
 
         public ChessMatch()
         {
             Board = new Board(8, 8);
-            _turn = 1;
-            _currentPlayer = Color.White;
+            Turn = 1;
+            CurrentPlayer = Color.White;
             Finishing = false;
             PutPiece();
 

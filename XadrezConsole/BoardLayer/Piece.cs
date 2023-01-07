@@ -2,7 +2,7 @@
 
 namespace BoardLayer
 {
-    internal class Piece
+    internal abstract class Piece
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
@@ -21,5 +21,7 @@ namespace BoardLayer
         {
             AmOfMovement++;
         }
+
+        public abstract bool[,] PossibleMoves();
     }
 }

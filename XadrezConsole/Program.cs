@@ -20,6 +20,14 @@ namespace XadrezConsole
                     Console.Write("Origem: ");
                     Position origin = Screen.ReadPositionChess().ToPosition();
 
+                    bool[,] PossiblePositions = match.Board.Piece(origin).PossibleMoves();
+
+
+                    Console.Clear();
+                    Screen.PrintBoard(match.Board, PossiblePositions);
+
+
+
                     Console.Write("Destino: ");
                     Position destiny = Screen.ReadPositionChess().ToPosition();
 
