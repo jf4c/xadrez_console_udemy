@@ -2,11 +2,50 @@
 using BoardLayer;
 using BoardLayer.Enum;
 using GameLayer;
+using System.Text.RegularExpressions;
 
 namespace XadrezConsole
 {
     internal class Screen
     {
+
+        public static void PrintMatch(ChessMatch match) 
+        {
+            Screen.PrintBoard(match.Board);
+            Console.WriteLine();
+            PrintPieceCaptured(match);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + match.Turn);
+            Console.WriteLine("Aguardando Jogada: " + match.CurrentPlayer);
+        }
+
+        public static void PrintPieceCaptured(ChessMatch match)
+        {
+            Console.WriteLine("peças Capturadas:");
+            Console.Write("Brancas");
+            PrintSet(match.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Pretas");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintSet(match.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();    
+        }
+
+        public static void PrintSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+            foreach (Piece p  in set)
+            {
+                Console.Write(p + " ");
+
+            }
+            Console.Write("]");
+
+        }
+
+
         public static void PrintBoard(Board board)
         {
             for (int i = 0; i < board.Line; i++)
