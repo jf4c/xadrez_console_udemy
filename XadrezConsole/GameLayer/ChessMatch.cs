@@ -105,7 +105,7 @@ namespace GameLayer
 
         public void ValidateDestinyPosition(Position origin, Position destiny)
         {
-            if (!Board.Piece(origin).CanMoveTo(destiny))
+            if (!Board.Piece(origin).PossibleMove(destiny))
             {
                 throw new BoardException("Posição de destino Inválida!");
             }
