@@ -238,6 +238,8 @@ namespace GameLayer
         private void PutPiece()
         {
             PutNewPiece('d', 1, new Rei(Board, Color.White));
+            PutNewPiece('e', 1, new Dama(Board, Color.White));
+
 
             PutNewPiece('c', 1, new Bispo(Board, Color.White));
             PutNewPiece('f', 1, new Bispo(Board, Color.White));
@@ -248,6 +250,7 @@ namespace GameLayer
 
 
             PutNewPiece('d', 8, new Rei(Board, Color.Black));
+            PutNewPiece('e', 8, new Dama(Board, Color.Black));
 
             PutNewPiece('c', 8, new Bispo(Board, Color.Black));
             PutNewPiece('f', 8, new Bispo(Board, Color.Black));
