@@ -239,33 +239,39 @@ namespace GameLayer
         {
             PutNewPiece('d', 1, new Rei(Board, Color.White));
             PutNewPiece('e', 1, new Dama(Board, Color.White));
-
-
             PutNewPiece('c', 1, new Bispo(Board, Color.White));
             PutNewPiece('f', 1, new Bispo(Board, Color.White));
-
             PutNewPiece('b', 1, new Cavalo(Board, Color.White));
             PutNewPiece('g', 1, new Cavalo(Board, Color.White));
-
-
             PutNewPiece('a', 1, new Torre(Board, Color.White));
             PutNewPiece('h', 1, new Torre(Board, Color.White));
-            
+            PutNewPiece('a', 2, new Peao(Board, Color.White));
+            PutNewPiece('b', 2, new Peao(Board, Color.White));
+            PutNewPiece('c', 2, new Peao(Board, Color.White));
+            PutNewPiece('d', 2, new Peao(Board, Color.White));
+            PutNewPiece('e', 2, new Peao(Board, Color.White));
+            PutNewPiece('f', 2, new Peao(Board, Color.White));
+            PutNewPiece('g', 2, new Peao(Board, Color.White));
+            PutNewPiece('h', 2, new Peao(Board, Color.White));
+
 
 
             PutNewPiece('d', 8, new Rei(Board, Color.Black));
             PutNewPiece('e', 8, new Dama(Board, Color.Black));
-
             PutNewPiece('c', 8, new Bispo(Board, Color.Black));
             PutNewPiece('f', 8, new Bispo(Board, Color.Black));
-
             PutNewPiece('b', 8, new Cavalo(Board, Color.Black));
             PutNewPiece('g', 8, new Cavalo(Board, Color.Black));
-
             PutNewPiece('a', 8, new Torre(Board, Color.Black));
             PutNewPiece('h', 8, new Torre(Board, Color.Black));
-           
-            
+            PutNewPiece('a', 7, new Peao(Board, Color.Black));
+            PutNewPiece('b', 7, new Peao(Board, Color.Black));
+            PutNewPiece('c', 7, new Peao(Board, Color.Black));
+            PutNewPiece('d', 7, new Peao(Board, Color.Black));
+            PutNewPiece('e', 7, new Peao(Board, Color.Black));
+            PutNewPiece('f', 7, new Peao(Board, Color.Black));
+            PutNewPiece('g', 7, new Peao(Board, Color.Black));
+            PutNewPiece('h', 7, new Peao(Board, Color.Black));
 
 
         }
