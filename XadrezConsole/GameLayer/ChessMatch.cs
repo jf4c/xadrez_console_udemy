@@ -74,8 +74,16 @@ namespace GameLayer
             {
                 Check = false;
             }
-            Turn++;
-            ChangePlayer();
+            if (TestCheckMate(Opponent(CurrentPlayer)))
+            {
+                Finishing = true;
+            }
+            else
+            {
+                Turn++;
+                ChangePlayer();
+            }
+
 
         }
 
@@ -187,6 +195,39 @@ namespace GameLayer
             return false;
         }
 
+        public bool TestCheckMate(Color color)
+        {
+            if (!IsInCheck(color))
+            {
+                return false;
+            }
+            foreach (Piece p in PiecesInGame(color))
+            {
+                bool[,] mat = p.PossibleMoves();
+                for (int i = 0; i < Board.Line; i++)
+                {
+                    for (int j = 0; j < Board.Column; j++)
+                    {
+                        if (mat[i,j])
+                        {
+                            Position origin = p.Position;
+                            Position destiny = new Position(i, j);
+                            Piece pieceCaptured = ExecuteMovement(origin, destiny);
+                            bool testCheck = IsInCheck(color);
+                            reverseMovement(origin, destiny, pieceCaptured);
+                            if (!testCheck) 
+                            {
+                                return false;
+                            }
+                        }
+
+                    }
+                }
+            }
+            return true;
+        }
+
+
 
         public void PutNewPiece(char colunm, int line, Piece piece)
         {
@@ -196,19 +237,19 @@ namespace GameLayer
 
         private void PutPiece()
         {
+            //PutNewPiece('c', 1, new Torre(Board, Color.White));
+            //PutNewPiece('c', 2, new Torre(Board, Color.White));
+            //PutNewPiece('d', 2, new Torre(Board, Color.White));
             PutNewPiece('c', 1, new Torre(Board, Color.White));
-            PutNewPiece('c', 2, new Torre(Board, Color.White));
-            PutNewPiece('d', 2, new Torre(Board, Color.White));
-            PutNewPiece('e', 2, new Torre(Board, Color.White));
-            PutNewPiece('e', 1, new Torre(Board, Color.White));
+            PutNewPiece('h', 7, new Torre(Board, Color.White));
             PutNewPiece('d', 1, new Rei(Board, Color.White));
 
-            PutNewPiece('c', 7, new Torre(Board, Color.Black));
-            PutNewPiece('c', 8, new Torre(Board, Color.Black));
-            PutNewPiece('d', 7, new Torre(Board, Color.Black));
-            PutNewPiece('e', 7, new Torre(Board, Color.Black));
-            PutNewPiece('e', 8, new Torre(Board, Color.Black));
-            PutNewPiece('d', 8, new Rei(Board, Color.Black));
+            //PutNewPiece('c', 7, new Torre(Board, Color.Black));
+            //PutNewPiece('c', 8, new Torre(Board, Color.Black));
+            //PutNewPiece('d', 7, new Torre(Board, Color.Black));
+            //PutNewPiece('e', 7, new Torre(Board, Color.Black));
+            PutNewPiece('b', 8, new Torre(Board, Color.Black));
+            PutNewPiece('a', 8, new Rei(Board, Color.Black));
 
 
         }

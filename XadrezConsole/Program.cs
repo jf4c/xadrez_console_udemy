@@ -46,6 +46,8 @@ namespace XadrezConsole
                     }
                     
                 }
+                Console.Clear();
+                Screen.PrintMatch(match);
               
 
             }
