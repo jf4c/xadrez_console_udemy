@@ -244,6 +244,10 @@ namespace GameLayer
             PutNewPiece('c', 1, new Bispo(Board, Color.White));
             PutNewPiece('f', 1, new Bispo(Board, Color.White));
 
+            PutNewPiece('b', 1, new Cavalo(Board, Color.White));
+            PutNewPiece('g', 1, new Cavalo(Board, Color.White));
+
+
             PutNewPiece('a', 1, new Torre(Board, Color.White));
             PutNewPiece('h', 1, new Torre(Board, Color.White));
             
@@ -254,6 +258,9 @@ namespace GameLayer
 
             PutNewPiece('c', 8, new Bispo(Board, Color.Black));
             PutNewPiece('f', 8, new Bispo(Board, Color.Black));
+
+            PutNewPiece('b', 8, new Cavalo(Board, Color.Black));
+            PutNewPiece('g', 8, new Cavalo(Board, Color.Black));
 
             PutNewPiece('a', 8, new Torre(Board, Color.Black));
             PutNewPiece('h', 8, new Torre(Board, Color.Black));
