@@ -13,25 +13,41 @@ namespace XadrezConsole
                 ChessMatch match = new ChessMatch();
                 while (!match.Finishing)
                 {
-                    Console.Clear();
-                    Screen.PrintBoard(match.Board);
-
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Position origin = Screen.ReadPositionChess().ToPosition();
-
-                    bool[,] PossiblePositions = match.Board.Piece(origin).PossibleMoves();
-
-
-                    Console.Clear();
-                    Screen.PrintBoard(match.Board, PossiblePositions);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.PrintBoard(match.Board);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + match.Turn);
+                        Console.WriteLine("Aguardando Jogada: " + match.CurrentPlayer);
 
 
 
-                    Console.Write("Destino: ");
-                    Position destiny = Screen.ReadPositionChess().ToPosition();
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Position origin = Screen.ReadPositionChess().ToPosition();
+                        match.ValidateOriginPosition(origin);
 
-                    match.ExecuteMovement(origin, destiny);
+                        bool[,] PossiblePositions = match.Board.Piece(origin).PossibleMoves();
+
+
+                        Console.Clear();
+                        Screen.PrintBoard(match.Board, PossiblePositions);
+
+
+
+                        Console.Write("Destino: ");
+                        Position destiny = Screen.ReadPositionChess().ToPosition();
+                        match.ValidateDestinyPosition(origin,destiny);
+                        match.PerformsMove(origin, destiny);
+
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                    
                 }
               
 
@@ -39,6 +55,7 @@ namespace XadrezConsole
             catch (BoardException e)
             {
                 Console.WriteLine(e.Message);
+                Console.ReadLine();
             }
 
 
