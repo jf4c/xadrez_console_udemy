@@ -42,6 +42,10 @@ namespace BoardLayer
         {
             AmOfMovement++;
         }
+        public void RemoveMovement()
+        {
+            AmOfMovement--;
+        }
 
         public abstract bool[,] PossibleMoves();
     }

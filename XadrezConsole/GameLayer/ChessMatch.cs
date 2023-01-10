@@ -9,6 +9,7 @@ namespace GameLayer
         public int Turn { get; private set; }
         public Color CurrentPlayer { get; private set; }
         public bool Finishing { get; private set; }
+        public bool Check { get; private set; }
 
         private HashSet<Piece> _pieces;
         private HashSet<Piece> _captured;
@@ -21,13 +22,14 @@ namespace GameLayer
             Turn = 1;
             CurrentPlayer = Color.White;
             Finishing = false;
+            Check = false;
             _pieces = new HashSet<Piece>();
             _captured = new HashSet<Piece>();
             PutPiece();
 
         }
 
-        public void ExecuteMovement(Position origin, Position destiny)
+        public Piece ExecuteMovement(Position origin, Position destiny)
         {
             Piece p = Board.RemovePiece(origin);
             p.addMovement();
@@ -37,12 +39,41 @@ namespace GameLayer
             {
                 _captured.Add(pieceCaptured);
             }
+            return pieceCaptured;
+        }
+
+        public void reverseMovement(Position origin, Position destiny, Piece pieceCaptured)
+        {
+            Piece p = Board.RemovePiece(destiny);
+            p.RemoveMovement();
+            if (pieceCaptured != null)
+            {
+                Board.PutPiece(pieceCaptured, destiny);
+                _captured.Remove(pieceCaptured);
+            }
+            Board.PutPiece(p, origin);
 
         }
 
+
         public void PerformsMove(Position origin, Position destiny)
         {
-            ExecuteMovement(origin, destiny);
+            Piece pieceCaptured = ExecuteMovement(origin, destiny);
+
+            if (IsInCheck(CurrentPlayer))
+            {
+                reverseMovement(origin, destiny, pieceCaptured);
+                throw new BoardException("Você não pode se colocar em xeque!");
+            }
+
+            if (IsInCheck(Opponent(CurrentPlayer)))
+            {
+                Check = true;
+            }
+            else
+            {
+                Check = false;
+            }
             Turn++;
             ChangePlayer();
 
@@ -111,6 +142,49 @@ namespace GameLayer
             aux.ExceptWith(CapturedPieces(color));
             return aux;
 
+        }
+
+        private Color Opponent(Color color)
+        {
+            if (color == Color.White)
+            {
+                return Color.Black;
+            } 
+            else
+            {
+                return Color.White;
+            }
+        }
+
+        private Piece king(Color color)
+        {
+            foreach (Piece p  in PiecesInGame(color))
+            {
+                if (p is Rei)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
+
+        public bool IsInCheck(Color color)
+        {
+            Piece R = king(color);
+            if (R == null)
+            {
+                throw new BoardException("Não Tem o Rei " + color + "nesse tabuleiro!");
+            }
+            foreach (Piece p in PiecesInGame(Opponent(color)))
+            {
+                bool[,] mat = p.PossibleMoves();
+                if (mat[R.Position.Line, R.Position.Column]) 
+                {
+                    return true;
+                }
+                
+            }
+            return false;
         }
 
 
