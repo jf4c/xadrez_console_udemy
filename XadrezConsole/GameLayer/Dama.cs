@@ -30,7 +30,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Line = pos.Line - 1;
+                pos.DefineValues(pos.Line - 1, pos.Column);
             }
 
             // NE
@@ -39,8 +39,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Line = pos.Line - 1;
-                pos.Column = pos.Column + 1;
+                pos.DefineValues(pos.Line - 1, pos.Column + 1);
             }
 
             // RIGHT
@@ -49,7 +48,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Column = pos.Column + 1;
+                pos.DefineValues(pos.Line, pos.Column + 1);
             }
 
             // SE
@@ -58,8 +57,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Line = pos.Line + 1;
-                pos.Column = pos.Column + 1;
+                pos.DefineValues(pos.Line + 1, pos.Column + 1);
             }
 
             // DOWN
@@ -68,7 +66,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Line = pos.Line + 1;
+                pos.DefineValues(pos.Line + 1, pos.Column);
             }
 
             // SO
@@ -77,8 +75,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Line = pos.Line + 1;
-                pos.Column = pos.Column - 1;
+                pos.DefineValues(pos.Line + 1, pos.Column - 1);
             }
 
             // LEFT
@@ -87,7 +84,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Column = pos.Column - 1;
+                pos.DefineValues(pos.Line, pos.Column - 1);
             }
 
             // NO
@@ -96,8 +93,7 @@ namespace GameLayer
             {
                 mat[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color) { break; }
-                pos.Line = pos.Line - 1;
-                pos.Column = pos.Column - 1;
+                pos.DefineValues(pos.Line - 1, pos.Column - 1);
             }
 
 

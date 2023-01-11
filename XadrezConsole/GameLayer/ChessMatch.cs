@@ -39,6 +39,26 @@ namespace GameLayer
             {
                 _captured.Add(pieceCaptured);
             }
+            //#Jogadas Especiais
+            if (p is Rei && destiny.Column == origin.Column + 2)
+            {
+                Position OriginCastle = new Position(origin.Line, origin.Column + 3);
+                Position DestinyCastle = new Position(origin.Line, origin.Column + 1);
+                Piece t = Board.RemovePiece(OriginCastle);
+                t.addMovement();
+                Board.PutPiece(t, DestinyCastle);
+            }
+
+            if (p is Rei && destiny.Column == origin.Column - 2)
+            {
+                Position OriginCastle = new Position(origin.Line, origin.Column - 4);
+                Position DestinyCastle = new Position(origin.Line, origin.Column - 1);
+                Piece t = Board.RemovePiece(OriginCastle);
+                t.addMovement();
+                Board.PutPiece(t, DestinyCastle);
+            }
+
+
             return pieceCaptured;
         }
 
@@ -52,6 +72,24 @@ namespace GameLayer
                 _captured.Remove(pieceCaptured);
             }
             Board.PutPiece(p, origin);
+
+            if (p is Rei && destiny.Column == origin.Column + 2)
+            {
+                Position OriginCastle = new Position(origin.Line, origin.Column + 3);
+                Position DestinyCastle = new Position(origin.Line, origin.Column + 1);
+                Piece t = Board.RemovePiece(DestinyCastle);
+                t.RemoveMovement();
+                Board.PutPiece(t, OriginCastle);
+            }
+
+            if (p is Rei && destiny.Column == origin.Column - 2)
+            {
+                Position OriginCastle = new Position(origin.Line, origin.Column - 4);
+                Position DestinyCastle = new Position(origin.Line, origin.Column - 1);
+                Piece t = Board.RemovePiece(DestinyCastle);
+                t.addMovement();
+                Board.PutPiece(t, OriginCastle);
+            }
 
         }
 
@@ -237,8 +275,8 @@ namespace GameLayer
 
         private void PutPiece()
         {
-            PutNewPiece('d', 1, new Rei(Board, Color.White));
-            PutNewPiece('e', 1, new Dama(Board, Color.White));
+            PutNewPiece('e', 1, new Rei(Board, Color.White, this));
+            PutNewPiece('d', 1, new Dama(Board, Color.White));
             PutNewPiece('c', 1, new Bispo(Board, Color.White));
             PutNewPiece('f', 1, new Bispo(Board, Color.White));
             PutNewPiece('b', 1, new Cavalo(Board, Color.White));
@@ -256,8 +294,8 @@ namespace GameLayer
 
 
 
-            PutNewPiece('d', 8, new Rei(Board, Color.Black));
-            PutNewPiece('e', 8, new Dama(Board, Color.Black));
+            PutNewPiece('e', 8, new Rei(Board, Color.Black, this));
+            PutNewPiece('d', 8, new Dama(Board, Color.Black));
             PutNewPiece('c', 8, new Bispo(Board, Color.Black));
             PutNewPiece('f', 8, new Bispo(Board, Color.Black));
             PutNewPiece('b', 8, new Cavalo(Board, Color.Black));
